@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Submissions — Jude Trail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink:        #14161B;
+    --ink-2:      #1C1F27;
+    --ink-3:      #262A34;
+    --paper:      #ECE7DD;
+    --paper-edge: #D8D1C2;
+    --oxblood:    #8B2E2E;
+    --oxblood-lit:#A83A3A;
+    --brass:      #B08D57;
+    --fog:        #C9C6BE;
+    --fog-dim:    #8A887F;
+
+    --display: 'Fraunces', Georgia, serif;
+    --body:    'Newsreader', Georgia, serif;
+    --mono:    'Courier Prime', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--fog);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    /* faint vignette so the desk has depth */
+    background-image: radial-gradient(120% 90% at 50% -10%, #1B1E27 0%, var(--ink) 60%);
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.1rem, 5vw, 2rem) 4rem;
+  }
+
+  /* ---------- masthead ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 1.1rem;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 1.6rem;
+    height: 1px;
+    background: var(--brass);
+    vertical-align: middle;
+    margin-right: 0.7rem;
+    transform: translateY(-0.15em);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 9vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin: 0 0 0.6rem;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--brass);
+  }
+
+  .byline {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: var(--fog-dim);
+    margin: 0 0 2rem;
+  }
+
+  .guidelines {
+    font-size: 1.02rem;
+    color: var(--fog);
+    border-left: 2px solid var(--ink-3);
+    padding: 0.1rem 0 0.1rem 1.2rem;
+    margin: 0 0 2.8rem;
+  }
+  .guidelines strong { color: var(--paper); font-weight: 600; }
+
+  /* ---------- form ---------- */
+  form { margin: 0; }
+
+  .field { margin: 0 0 1.9rem; }
+
+  label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 0.6rem;
+  }
+  label .req { color: var(--oxblood-lit); margin-left: 0.15em; }
+  label .hint {
+    float: right;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--fog-dim);
+  }
+
+  input[type="email"],
+  textarea {
+    width: 100%;
+    font-family: var(--body);
+    font-size: 1.05rem;
+    color: var(--fog);
+    background: var(--ink-2);
+    border: 1px solid var(--ink-3);
+    border-radius: 3px;
+    padding: 0.85rem 1rem;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  input[type="email"]::placeholder,
+  textarea::placeholder { color: #56544D; }
+
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(176,141,87,0.16);
+  }
+
+  /* ---------- the signature element: the manuscript sheet ---------- */
+  .manuscript label { color: var(--brass); }
+
+  .sheet {
+    background: var(--paper);
+    border: 1px solid var(--paper-edge);
+    border-radius: 3px;
+    box-shadow: 0 18px 40px -18px rgba(0,0,0,0.7);
+    overflow: hidden;
+  }
+  .sheet-slug {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8A8172;
+    background: #E3DCCE;
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 0.5rem 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  #wordcount { color: #A79C87; }
+
+  textarea#story {
+    background: var(--paper);
+    color: #1A1712;
+    border: none;
+    border-radius: 0;
+    font-family: var(--mono);
+    font-size: 1rem;
+    line-height: 1.9;
+    min-height: 320px;
+    resize: vertical;
+    padding: 1.3rem 1.4rem;
+  }
+  textarea#story::placeholder { color: #A79C87; }
+  textarea#story:focus { box-shadow: none; }
+  .sheet:focus-within {
+    box-shadow: 0 18px 40px -18px rgba(0,0,0,0.7),
+                0 0 0 3px rgba(176,141,87,0.28);
+  }
+
+  textarea#notes { min-height: 96px; resize: vertical; }
+
+  /* ---------- payment ---------- */
+  .pay {
+    border: 1px solid var(--ink-3);
+    border-radius: 3px;
+    background: var(--ink-2);
+    padding: 1.4rem 1.4rem 1.5rem;
+    margin: 0 0 2.2rem;
+  }
+  .pay h2 {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 0.8rem;
+  }
+  .pay p { margin: 0 0 1rem; font-size: 0.98rem; color: var(--fog); }
+  .pay .fee { color: var(--paper); font-family: var(--display); font-weight: 600; }
+  .pay .crucial {
+    color: var(--paper);
+    background: rgba(139,46,46,0.16);
+    border-left: 2px solid var(--oxblood-lit);
+    padding: 0.7rem 0.9rem;
+    font-size: 0.94rem;
+    margin: 0 0 1.2rem;
+  }
+  .cashapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    text-decoration: none;
+    background: var(--ink-3);
+    border: 1px solid #343945;
+    border-radius: 3px;
+    padding: 0.7rem 1.1rem;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .cashapp:hover { border-color: var(--brass); background: #2E333E; }
+  .cashapp span.mark {
+    font-family: var(--display); font-weight: 900; color: var(--brass);
+  }
+
+  /* ---------- submit ---------- */
+  button.send {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--oxblood);
+    border: none;
+    border-radius: 3px;
+    padding: 1.05rem;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.06s ease;
+  }
+  button.send:hover { background: var(--oxblood-lit); }
+  button.send:active { transform: translateY(1px); }
+  button.send:disabled { background: var(--ink-3); color: var(--fog-dim); cursor: default; }
+  button.send:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  .footnote {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--fog-dim);
+    text-align: center;
+    margin: 2.4rem 0 0;
+  }
+
+  /* ---------- success / error ---------- */
+  .status { margin: 1.2rem 0 0; font-size: 0.98rem; }
+  .status.err { color: var(--oxblood-lit); }
+
+  #done {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  #done h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: var(--paper);
+    margin: 0 0 0.8rem;
+  }
+  #done p { color: var(--fog); margin: 0 auto; max-width: 40ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- ============ MASTHEAD — edit these ============ -->
+    <p class="eyebrow">Submissions Open</p>
+    <h1>The <em>Name</em><br />of Your Call</h1>
+    <p class="byline">Read &amp; selected by Jude Trail</p>
+
+    <p class="guidelines">
+      <strong>Guidelines.</strong> One story per submission, pasted in full below.
+      Prose to roughly <strong>5,000 words</strong>. A <strong>$3 reading fee</strong>
+      via Cash App accompanies each entry. Response within eight weeks.
+      <!-- ^ replace with your real word limit, fee, and terms -->
+    </p>
+
+    <!-- ============ FORM ============ -->
+    <form id="submission"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST">
+
+      <div class="field">
+        <label for="email">Your email <span class="req">*</span></label>
+        <input type="email" id="email" name="email"
+               placeholder="you@example.com" required />
+      </div>
+
+      <div class="field manuscript">
+        <label for="story">The story <span class="req">*</span></label>
+        <div class="sheet">
+          <div class="sheet-slug">
+            <span>Manuscript — paste below</span>
+            <span id="wordcount">0 words</span>
+          </div>
+          <textarea id="story" name="story"
+                    placeholder="Paste your story here…" required></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">
+          Notes <span class="hint">optional — cover note, bio, payment confirmation</span>
+        </label>
+        <textarea id="notes" name="notes"
+                  placeholder="Anything you'd like me to know — and note here once you've sent the reading fee."></textarea>
+      </div>
+
+      <!-- ============ PAYMENT — edit tag &amp; fee ============ -->
+      <div class="pay">
+        <h2>Reading fee</h2>
+        <p>Send <span class="fee">$3</span> via Cash App to
+          <a class="cashapp" href="https://cash.app/$YOURTAG" target="_blank" rel="noopener">
+            <span class="mark">$</span>YOURTAG
+          </a>
+        </p>
+        <p class="crucial">
+          Put the <strong>same email you entered above</strong> in the Cash App payment note.
+          That's how I match your payment to your story — no email in the note means I can't
+          confirm the entry.
+        </p>
+        <p style="margin:0;color:var(--fog-dim);font-size:0.88rem;">
+          Then note in the box above that you've paid. Unpaid submissions aren't read.
+        </p>
+      </div>
+
+      <button type="submit" class="send" id="sendBtn">Send submission</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div id="done">
+      <h2>Received.</h2>
+      <p>Your story's in. Once your reading fee lands with your email in the note,
+         you're in the queue. Expect a reply within eight weeks.</p>
+    </div>
+
+    <p class="footnote">© <span id="yr"></span> Jude Trail — all rights remain the author's.</p>
+  </main>
+
+<script>
+  // word counter for the manuscript sheet
+  const story = document.getElementById('story');
+  const wc = document.getElementById('wordcount');
+  story.addEventListener('input', () => {
+    const n = story.value.trim() ? story.value.trim().split(/\s+/).length : 0;
+    wc.textContent = n.toLocaleString() + (n === 1 ? ' word' : ' words');
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // AJAX submit so the writer stays on the page and sees a confirmation
+  const form = document.getElementById('submission');
+  const btn = document.getElementById('sendBtn');
+  const status = document.getElementById('status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg = data?.errors?.map(x => x.message).join(', ')
+          || 'Something went wrong sending that. Check the fields and try again.';
+        status.className = 'status err';
+        status.textContent = msg;
+        btn.disabled = false;
+        btn.textContent = 'Send submission';
+      }
+    } catch (err) {
+      status.className = 'status err';
+      status.textContent = 'Couldn’t reach the server. Check your connection and try again.';
+      btn.disabled = false;
+      btn.textContent = 'Send submission';
+    }
+  });
+</script>
+</body>
+</html>
