@@ -70,8 +70,8 @@
   h1 {
     font-family: var(--display);
     font-weight: 900;
-    font-size: clamp(2.6rem, 9vw, 4.4rem);
-    line-height: 0.98;
+    font-size: clamp(2.4rem, 8vw, 4rem);
+    line-height: 1.0;
     letter-spacing: -0.02em;
     color: var(--paper);
     margin: 0 0 0.6rem;
@@ -95,9 +95,33 @@
     color: var(--fog);
     border-left: 2px solid var(--ink-3);
     padding: 0.1rem 0 0.1rem 1.2rem;
-    margin: 0 0 2.8rem;
+    margin: 0 0 2.6rem;
   }
   .guidelines strong { color: var(--paper); font-weight: 600; }
+
+  /* ---------- step headers ---------- */
+  .steptag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .steptag .num {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--brass);
+    width: 1.5rem; height: 1.5rem;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    letter-spacing: 0;
+  }
 
   /* ---------- form ---------- */
   form { margin: 0; }
@@ -189,51 +213,107 @@
 
   textarea#notes { min-height: 96px; resize: vertical; }
 
-  /* ---------- payment ---------- */
+  /* ---------- payment (now Step 1) ---------- */
   .pay {
     border: 1px solid var(--ink-3);
     border-radius: 3px;
     background: var(--ink-2);
     padding: 1.4rem 1.4rem 1.5rem;
-    margin: 0 0 2.2rem;
-  }
-  .pay h2 {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin: 0 0 0.8rem;
+    margin: 0 0 2.6rem;
   }
   .pay p { margin: 0 0 1rem; font-size: 0.98rem; color: var(--fog); }
   .pay .fee { color: var(--paper); font-family: var(--display); font-weight: 600; }
-  .pay .crucial {
-    color: var(--paper);
-    background: rgba(139,46,46,0.16);
-    border-left: 2px solid var(--oxblood-lit);
-    padding: 0.7rem 0.9rem;
-    font-size: 0.94rem;
-    margin: 0 0 1.2rem;
-  }
+
   .cashapp {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.4rem;
     font-family: var(--mono);
-    font-size: 0.86rem;
+    font-size: 0.9rem;
     letter-spacing: 0.06em;
     color: var(--paper);
     text-decoration: none;
     background: var(--ink-3);
     border: 1px solid #343945;
     border-radius: 3px;
-    padding: 0.7rem 1.1rem;
+    padding: 0.75rem 1.2rem;
     transition: border-color 0.18s ease, background 0.18s ease;
   }
   .cashapp:hover { border-color: var(--brass); background: #2E333E; }
-  .cashapp span.mark {
+  .cashapp .mark {
     font-family: var(--display); font-weight: 900; color: var(--brass);
   }
+
+  /* the reference code — the thing that ties payment to submission */
+  .code-box {
+    margin: 1.3rem 0 1.2rem;
+    background: var(--ink-3);
+    border: 1px dashed var(--brass);
+    border-radius: 3px;
+    padding: 1rem 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .code-box:hover { background: #2E333E; }
+  .code-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+    margin: 0 0 0.35rem;
+  }
+  .code {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--brass);
+  }
+  .code-copy {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+    margin: 0.4rem 0 0;
+  }
+
+  .crucial {
+    color: var(--paper);
+    background: rgba(139,46,46,0.16);
+    border-left: 2px solid var(--oxblood-lit);
+    padding: 0.7rem 0.9rem;
+    font-size: 0.94rem;
+    margin: 0 0 0.4rem;
+  }
+
+  /* ---------- paid-confirmation gate ---------- */
+  .confirm { margin: 0 0 1.7rem; }
+  .check {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    font-family: var(--body);
+    font-size: 0.98rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--fog);
+    cursor: pointer;
+    margin: 0;
+  }
+  .check input {
+    margin: 0.35rem 0 0;
+    width: 1.1rem; height: 1.1rem;
+    accent-color: var(--oxblood-lit);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .check strong { color: var(--paper); font-weight: 600; }
+  .check .rc { color: var(--brass); font-family: var(--mono); font-weight: 700; }
 
   /* ---------- submit ---------- */
   button.send {
@@ -250,9 +330,9 @@
     cursor: pointer;
     transition: background 0.18s ease, transform 0.06s ease;
   }
-  button.send:hover { background: var(--oxblood-lit); }
-  button.send:active { transform: translateY(1px); }
-  button.send:disabled { background: var(--ink-3); color: var(--fog-dim); cursor: default; }
+  button.send:hover:not(:disabled) { background: var(--oxblood-lit); }
+  button.send:active:not(:disabled) { transform: translateY(1px); }
+  button.send:disabled { background: var(--ink-3); color: var(--fog-dim); cursor: not-allowed; }
   button.send:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
 
   .footnote {
@@ -280,7 +360,8 @@
     color: var(--paper);
     margin: 0 0 0.8rem;
   }
-  #done p { color: var(--fog); margin: 0 auto; max-width: 40ch; }
+  #done p { color: var(--fog); margin: 0 auto 0.6rem; max-width: 42ch; }
+  #done .rc { color: var(--brass); font-family: var(--mono); font-weight: 700; }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
@@ -291,80 +372,148 @@
   <main class="wrap">
     <!-- ============ MASTHEAD — edit these ============ -->
     <p class="eyebrow">Submissions Open</p>
-    <h1>Jude Trail's <em>Originality, Well-Written</em><br /></h1>
-    
+    <h1>Jude Trail's <em>Originality, Well-Written</em></h1>
+    <p class="byline">Read &amp; selected by Jude Trail</p>
 
     <p class="guidelines">
       <strong>Guidelines.</strong> One short story per submission, pasted in full below.
-      Prose up to <strong>12,500 words</strong>. <br />A <strong>$5 reading fee</strong>
-      via Cash App accompanies each entry.<br /> Response within one week.
-      <!-- ^ replace with your real word limit, fee, and terms -->
+      Prose up to <strong>12,500 words</strong>. A <strong>$5 reading fee</strong>
+      via Cash App accompanies each entry. Response within one week.
     </p>
 
-    <!-- ============ FORM ============ -->
-    <form id="submission"
-          action="https://formspree.io/f/xjgnqzrl"
-          method="POST">
-
-      <div class="field">
-        <label for="email">Your email <span class="req">*</span></label>
-        <input type="email" id="email" name="email"
-               placeholder="you@example.com" required />
-      </div>
-
-      <div class="field manuscript">
-        <label for="story">The story <span class="req">*</span></label>
-        <div class="sheet">
-          <div class="sheet-slug">
-            <span>Manuscript — paste below</span>
-            <span id="wordcount">0 words</span>
-          </div>
-          <textarea id="story" name="story"
-                    placeholder="Paste your story here…" required></textarea>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="notes">
-          Notes <span class="hint">Be Sure to include email for payment confirmation</span>
-        </label>
-        <textarea id="notes" name="notes"
-                  placeholder="Anything you'd like me to know — and note here once you've sent the reading fee."></textarea>
-      </div>
-
-      <!-- ============ PAYMENT — edit tag &amp; fee ============ -->
+    <!-- ============ STEP 1 — PAY FIRST ============ -->
+    <section id="step1" aria-labelledby="step1tag">
+      <p class="steptag" id="step1tag"><span class="num">1</span> Pay the reading fee</p>
       <div class="pay">
-        <h2>Reading fee</h2>
         <p>Send <span class="fee">$5</span> via Cash App to
-          <a aria-label="Pay the $5 reading fee via Cash App" class="cashapp" href="https://cash.app/$EditingTrail/5" target="_blank" rel="noopener">
+          <a class="cashapp" href="https://cash.app/$EditingTrail/5" target="_blank" rel="noopener"
+             aria-label="Pay the $5 reading fee via Cash App to EditingTrail">
             <span class="mark">$</span>EditingTrail
           </a>
         </p>
+
+        <div class="code-box" id="codeBox" role="button" tabindex="0"
+             aria-label="Your reference code — tap to copy">
+          <span class="code-label">Put this code in your Cash App note</span>
+          <span class="code" id="refcode">JT-0000</span>
+          <span class="code-copy" id="codeCopy">tap to copy</span>
+        </div>
+
         <p class="crucial">
-          Put the <strong>same email you entered above</strong> in the Cash App payment note.
-          That's how I match your payment to your story — no email in the note means I can't
-          confirm the entry.
-        </p>
-        <p style="margin:0;color:var(--fog-dim);font-size:0.88rem;">
-          Then note in the box above that you've paid. Unpaid submissions aren't read.
+          The code is how I match your $5 to your story. <strong>No code in the note
+          means I can't confirm your entry</strong> — add it before you send the money.
         </p>
       </div>
+    </section>
 
-      <button type="submit" class="send" id="sendBtn">Send submission</button>
-      <p class="status" id="status" role="status" aria-live="polite"></p>
-    </form>
+    <!-- ============ STEP 2 — SEND STORY (gated) ============ -->
+    <section id="step2" aria-labelledby="step2tag">
+      <p class="steptag" id="step2tag"><span class="num">2</span> Send your story</p>
+
+      <form id="submission"
+            action="https://formspree.io/f/xjgnqzrl"
+            method="POST">
+
+        <div class="field">
+          <label for="email">Your email <span class="req">*</span></label>
+          <input type="email" id="email" name="email"
+                 placeholder="you@example.com" required />
+        </div>
+
+        <div class="field manuscript">
+          <label for="story">The story <span class="req">*</span></label>
+          <div class="sheet">
+            <div class="sheet-slug">
+              <span>Manuscript — paste below</span>
+              <span id="wordcount">0 words</span>
+            </div>
+            <textarea id="story" name="story"
+                      placeholder="Paste your story here…" required></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes">
+            Notes <span class="hint">optional — cover note or short bio</span>
+          </label>
+          <textarea id="notes" name="notes"
+                    placeholder="Anything you'd like me to know."></textarea>
+        </div>
+
+        <!-- reference code travels with the submission so both sides carry it -->
+        <input type="hidden" name="reference_code" id="refcodeHidden" />
+
+        <div class="confirm">
+          <label class="check">
+            <input type="checkbox" id="paidCheck" />
+            <span>I've sent the <strong>$5</strong> reading fee via Cash App with code
+              <span class="rc" id="refcodeInline">JT-0000</span> in the note.
+              Unpaid submissions aren't read.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="send" id="sendBtn" disabled>Send submission</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
 
     <div id="done">
       <h2>Received.</h2>
-      <p>Your story's in. Once your reading fee lands with your email in the note,
-         you're in the queue. Expect a reply within one week.</p>
+      <p>Your story's in. As soon as your $5 lands with code
+         <span class="rc" id="doneCode">JT-0000</span> in the note, you're in the queue.</p>
+      <p>Expect a reply within one week.</p>
     </div>
 
     <p class="footnote">© <span id="yr"></span> Jude Trail — all rights remain the author's.</p>
   </main>
 
 <script>
-  // word counter for the manuscript sheet
+  // ---- reference code: generated once, kept across reloads, retired after a send ----
+  function genCode() { return 'JT-' + Math.floor(1000 + Math.random() * 9000); }
+  function getCode() {
+    try {
+      let c = localStorage.getItem('jt_refcode');
+      if (!c) { c = genCode(); localStorage.setItem('jt_refcode', c); }
+      return c;
+    } catch (e) {
+      // storage blocked (e.g. preview sandbox) — fall back to an in-memory code
+      return window.__jtCode || (window.__jtCode = genCode());
+    }
+  }
+  function clearCode() { try { localStorage.removeItem('jt_refcode'); } catch (e) {} }
+
+  const code = getCode();
+  document.getElementById('refcode').textContent = code;
+  document.getElementById('refcodeInline').textContent = code;
+  document.getElementById('refcodeHidden').value = code;
+  document.getElementById('doneCode').textContent = code;
+
+  // ---- tap the code box to copy ----
+  const codeBox = document.getElementById('codeBox');
+  const codeCopy = document.getElementById('codeCopy');
+  function copyCode() {
+    const done = () => {
+      codeCopy.textContent = 'copied \u2713';
+      setTimeout(() => { codeCopy.textContent = 'tap to copy'; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done).catch(fallback);
+    } else { fallback(); }
+    function fallback() {
+      try {
+        const t = document.createElement('textarea');
+        t.value = code; t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.select(); document.execCommand('copy');
+        document.body.removeChild(t); done();
+      } catch (e) {}
+    }
+  }
+  codeBox.addEventListener('click', copyCode);
+  codeBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyCode(); }
+  });
+
+  // ---- word counter for the manuscript sheet ----
   const story = document.getElementById('story');
   const wc = document.getElementById('wordcount');
   story.addEventListener('input', () => {
@@ -374,13 +523,23 @@
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // AJAX submit so the writer stays on the page and sees a confirmation
+  // ---- the gate: send stays disabled until they confirm payment ----
   const form = document.getElementById('submission');
   const btn = document.getElementById('sendBtn');
   const status = document.getElementById('status');
+  const paidCheck = document.getElementById('paidCheck');
 
+  btn.disabled = true;
+  paidCheck.addEventListener('change', () => { btn.disabled = !paidCheck.checked; });
+
+  // ---- AJAX submit so the writer stays on the page ----
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!paidCheck.checked) {
+      status.className = 'status err';
+      status.textContent = 'Please confirm you\u2019ve sent the reading fee first.';
+      return;
+    }
     status.className = 'status';
     status.textContent = '';
     btn.disabled = true;
@@ -393,12 +552,14 @@
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        form.style.display = 'none';
+        clearCode(); // next visit starts a fresh code for a fresh submission
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'none';
         document.getElementById('done').style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         const data = await res.json().catch(() => ({}));
-        const msg = data?.errors?.map(x => x.message).join(', ')
+        const msg = (data && data.errors ? data.errors.map(x => x.message).join(', ') : '')
           || 'Something went wrong sending that. Check the fields and try again.';
         status.className = 'status err';
         status.textContent = msg;
@@ -407,7 +568,7 @@
       }
     } catch (err) {
       status.className = 'status err';
-      status.textContent = 'Couldn’t reach the server. Check your connection and try again.';
+      status.textContent = 'Couldn\u2019t reach the server. Check your connection and try again.';
       btn.disabled = false;
       btn.textContent = 'Send submission';
     }
